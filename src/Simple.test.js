@@ -19,10 +19,10 @@ test('there is no I in team', () => {
 
 // Arrays
 const shoppingList = [
-  'diapers',
-  'kleenex',
-  'trash bags',
-  'paper towels',
+  'milk',
+  'bread',
+  'ketchup',
+  'toilet roll',
   'beer',
 ];
 
