@@ -5,15 +5,6 @@ import AddressFinder from './AddressFinder';
 
 const formatFullAddress = (address) => `${address.street}, ${address.town}, ${address.postcode}`;
 
-const postcodesMatch = (a, b) => (
-  a.toString().toLowerCase().replace(/\s/g, '') === b.toString().toLowerCase().replace(/\s/g, '')
-);
-
-const getAddressesForPostcode = async (postcode) => {
-  await fetch(`https://api-mrstevenhill.herokuapp.com/addresses`)
-    .then(r => r.filter(address => postcodesMatch(address.postcode, postcode)));
-};
-
 const AvailabilityChecker = () => {
   const handleAddressSelected = useCallback(address => {
     if (address) window.alert(`Address selected: ${formatFullAddress(address)}`);
@@ -23,7 +14,7 @@ const AvailabilityChecker = () => {
     <Card>
       <CardBody>
         <h1>Check Availability</h1>
-        <AddressFinder getAddressesForPostcode={getAddressesForPostcode} onAddressSelected={handleAddressSelected} />
+        <AddressFinder onAddressSelected={handleAddressSelected} />
       </CardBody>
     </Card>
   );

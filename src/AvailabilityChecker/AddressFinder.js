@@ -1,17 +1,27 @@
 import React, { useState, useCallback } from 'react';
-import { Button, Input, SelectList } from '@zen/ui-lib';
 import { Flex, Box } from '@rebass/grid';
+import { Button, Input, SelectList } from '@zen/ui-lib';
 
+import Api from '../Api';
 import AddressListOptions from './AddressListOptions';
 
-function AddressFinder({ getAddressesForPostcode, onAddressSelected }) {
+const formatPostcode = p => p.toString().toLowerCase().replace(/\s/g, '');
+
+const postcodesMatch = (a, b) => formatPostcode(a) === formatPostcode(b);
+
+const getAddressesForPostcode = (postcode) => {
+  return Api.get('addresses')
+    .then(r => r.data.filter(address => postcodesMatch(address.postcode, postcode)))
+};
+
+function AddressFinder({ onAddressSelected }) {
   const [postcode, setPostcode] = useState('');
   const [selectedAddressId, setSelectedAddressId] = useState(undefined);
   const [addresses, setAddresses] = useState([]);
 
   const handleSearch = useCallback(() => {
     getAddressesForPostcode(postcode).then(addresses => setAddresses(addresses));
-  }, [getAddressesForPostcode, postcode]);
+  }, [postcode]);
 
   const handleSelect = useCallback(() => {
     onAddressSelected(addresses.find(address => address.id === selectedAddressId));

@@ -1,23 +1,24 @@
+// Add two numbers together
 function sum(a, b) {
   return a + b;
 }
 
-// Equality
+// Test equality
 test('sum of 1 & 2 equals 3', () => {
   expect(sum(1, 2)).toBe(3);
 });
 
-// Inequality
+// Test inequality
 test('sum of 1 & 2 does not equal 4', () => {
   expect(sum(1, 2)).not.toBe(4);
 });
 
-// Regular Expressions
+// Test with regular expressions
 test('there is no I in team', () => {
   expect('team').not.toMatch(/I/);
 });
 
-// Arrays
+// Test contents of arrays
 const shoppingList = [
   'milk',
   'bread',
@@ -30,5 +31,5 @@ test('the shopping list has beer on it', () => {
   expect(shoppingList).toContain('beer');
 });
 
-// See Jest docs for more
+// See Jest docs for more examples
 // https://jestjs.io/docs/en/using-matchers
