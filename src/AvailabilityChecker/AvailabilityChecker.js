@@ -10,7 +10,7 @@ const postcodesMatch = (a, b) => (
 );
 
 const getAddressesForPostcode = async (postcode) => {
-  const response = await fetch(`https://secret-waters-24194.herokuapp.com/addresses`);
+  const response = await fetch(`https://api-mrstevenhill.herokuapp.com/addresses`); //TODO: use 'then' syntax
   const addresses = await response.json();
   return addresses.filter(address => postcodesMatch(address.postcode, postcode));
 };
